@@ -1,11 +1,4 @@
-import { FLEET, type FleetBot } from "@/data/fleet";
-
-function initials(bot: FleetBot) {
-  if (bot.mark) return bot.mark;
-  const parts = bot.name.split(/\s+/).filter(Boolean);
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return `${parts[0][0] || ""}${parts[parts.length - 1][0] || ""}`.toUpperCase();
-}
+import { FLEET } from "@/data/fleet";
 
 function isLight(hex: string) {
   if (!hex.startsWith("#") || hex.length < 7) return false;
@@ -15,74 +8,55 @@ function isLight(hex: string) {
   return (r * 299 + g * 587 + b * 114) / 1000 > 180;
 }
 
-function Box({
-  bot,
-  chief = false,
-}: {
-  bot: FleetBot;
-  chief?: boolean;
-}) {
-  const className = chief ? "org-box is-chief" : "org-box";
-  const body = (
-    <>
-      <span
-        className="org-avatar"
-        style={{
-          background: bot.color,
-          color: isLight(bot.color) ? "#111" : "#fff",
-        }}
-        aria-hidden
-      >
-        {initials(bot)}
-      </span>
-      <span className="org-name">{bot.name}</span>
-      <span className="org-blurb">{bot.blurb}</span>
-    </>
-  );
-
-  if (bot.jobId) {
-    return (
-      <a className={className} href={`#${bot.jobId}`}>
-        {body}
-      </a>
-    );
-  }
-
-  return <div className={className}>{body}</div>;
-}
-
 export function RosterChart() {
-  const seat = FLEET.find((item) => item.seat);
-  const agents = FLEET.filter((item) => !item.seat);
-
-  if (!seat) return null;
-
   return (
     <section id="roster" className="roster">
-      <h2>A background team for every sales rep</h2>
+      <p className="eyebrow">The agent fleet</p>
+      <h2>Three agents. Three computers. One seller in control.</h2>
       <p className="section-lede">
-        The work itself is the trigger. A call starts, an email lands, or an
-        account enters the list — and the right agent picks it up. They keep
-        working after the laptop closes. Drafts stay drafts until the rep sends.
+        Each named agent keeps its own workspace and status. The seller can
+        watch the work, review the artifact, and decide what leaves the draft.
       </p>
-
-      <div className="org" role="tree">
-        <div className="org-top">
-          <Box bot={seat} chief />
-        </div>
-        <div className="org-branch">
-          <div className="org-connect" aria-hidden>
-            <i className="org-stem" />
-            <i className="org-bar" />
-          </div>
-          <ul className="org-kids">
-            {agents.map((agent) => (
-              <li key={agent.id} className="org-kid">
-                <Box bot={agent} />
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="fleet-grid">
+        {FLEET.map((agent) => (
+          <a key={agent.id} className="fleet-agent" href={`#${agent.jobId}`}>
+            <header>
+              <span
+                className="fleet-avatar"
+                style={{
+                  background: agent.color,
+                  color: isLight(agent.color) ? "#0b1f3a" : "#fff",
+                }}
+                aria-hidden
+              >
+                {agent.name.slice(0, 1)}
+              </span>
+              <p>
+                <strong>{agent.name}</strong>
+                <small>
+                  <i aria-hidden />
+                  {agent.status}
+                </small>
+              </p>
+            </header>
+            <p className="fleet-blurb">{agent.blurb}</p>
+            <div className="fleet-computer" aria-label={`${agent.name} computer`}>
+              <div className="fleet-computer-bar">
+                <span aria-hidden>
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <strong>Computer</strong>
+              </div>
+              <div className="fleet-computer-body">
+                <span>{agent.app}</span>
+                <p>{agent.task}</p>
+                <small>Work stays in draft</small>
+              </div>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
   );

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import type { CroJob } from "@/data/types";
+import type { GtmWorkflow } from "@/data/types";
 import { CLIPS } from "@/data/clips";
 import { ClipFigure } from "./ClipFigure";
 import { JobDemo } from "./JobDemo";
 
-export function JobMore({ job }: { job: CroJob }) {
+export function JobMore({ job }: { job: GtmWorkflow }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ export function JobMore({ job }: { job: CroJob }) {
       className="job-more"
       onToggle={(event) => setOpen(event.currentTarget.open)}
     >
-      <summary>Watch the agent work in the background</summary>
+      <summary>Open the chat and computer demo</summary>
       {open ? (
         <div className="job-more-body">
           <JobDemo job={job} />

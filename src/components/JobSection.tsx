@@ -1,15 +1,15 @@
-import type { CroJob, JobId } from "@/data/types";
+import type { GtmWorkflow, JobId } from "@/data/types";
 import { Storyboard } from "./Storyboard";
 import { ChapterPayoff } from "./ChapterPayoff";
 import { JobMore } from "./JobMore";
 
 const JOB_ART: Record<JobId, string> = {
-  "standardize-room": "/brand/watercolor-room.png",
-  "legal-redlines": "/brand/watercolor-deal.png",
-  "attach-engine": "/brand/watercolor-attach.png",
+  "partner-call": "/brand/watercolor-room.png",
+  "launch-questions": "/brand/watercolor-deal.png",
+  "account-research": "/brand/watercolor-attach.png",
 };
 
-export function JobSection({ job }: { job: CroJob }) {
+export function JobSection({ job }: { job: GtmWorkflow }) {
   const lastBeat = job.storyboard[job.storyboard.length - 1];
   const payoff =
     lastBeat?.artifact || lastBeat?.slides?.length ? lastBeat : undefined;

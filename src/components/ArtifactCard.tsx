@@ -1,11 +1,19 @@
 import type { Artifact } from "@/data/types";
-import { HeardSlide } from "./HeardSlide";
 
 export function ArtifactCard({ artifact }: { artifact: Artifact }) {
   switch (artifact.kind) {
-      case "slides":
+    case "slides":
       return (
-        <HeardSlide slides={artifact.cards} size="sm" />
+        <div className="art art-doc">
+          <p className="art-kicker">Slide draft</p>
+          <h3 className="art-title">{artifact.title}</h3>
+          {artifact.cards.map((card) => (
+            <div key={card.n} className="art-block">
+              <p className="art-label">{card.title}</p>
+              <p>{card.body}</p>
+            </div>
+          ))}
+        </div>
       );
     case "one-pager":
       return (
@@ -20,10 +28,30 @@ export function ArtifactCard({ artifact }: { artifact: Artifact }) {
           ))}
         </div>
       );
+    case "checklist":
+      return (
+        <div className="art art-checklist">
+          <p className="art-kicker">Sourced checklist</p>
+          <h3 className="art-title">{artifact.title}</h3>
+          <p className="art-caption">{artifact.sourceNote}</p>
+          <ol>
+            {artifact.items.map((item) => (
+              <li key={item.label}>
+                <span aria-hidden>✓</span>
+                <p>
+                  <strong>{item.label}</strong>
+                  <small>{item.answer}</small>
+                  <em>{item.source}</em>
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      );
     case "packet":
       return (
         <div className="art art-doc">
-          <p className="art-kicker">Champion packet</p>
+          <p className="art-kicker">Working brief</p>
           <h3 className="art-title">{artifact.title}</h3>
           {artifact.fields.map((field) => (
             <div key={field.label} className="art-block">
@@ -194,14 +222,40 @@ export function ArtifactCard({ artifact }: { artifact: Artifact }) {
       );
     case "outbound":
       return (
-        <div className="art art-doc">
-          <p className="art-kicker">{artifact.title}</p>
+        <div className="art art-doc art-outbound">
+          <p className="art-kicker">Sourced outreach pack</p>
+          <h3 className="art-title">{artifact.title}</h3>
           {artifact.hypothesis.map((item) => (
             <div key={item.k} className="art-block">
               <p className="art-label">{item.k}</p>
               <p>{item.body}</p>
             </div>
           ))}
+          <div className="art-outbound-grid">
+            <section>
+              <p className="art-label">Public sources</p>
+              {artifact.evidence.map((item) => (
+                <p key={item.source}>
+                  <strong>{item.source}</strong>
+                  <span>{item.finding}</span>
+                </p>
+              ))}
+            </section>
+            <section>
+              <p className="art-label">Possible owners</p>
+              {artifact.targets.map((target) => (
+                <p key={target.name}>
+                  <strong>{target.name}</strong>
+                  <span>{target.why}</span>
+                </p>
+              ))}
+            </section>
+          </div>
+          <div className="art-outbound-page">
+            <p className="art-label">Account page draft</p>
+            <strong>{artifact.page.headline}</strong>
+            <span>{artifact.page.body}</span>
+          </div>
         </div>
       );
     default:

@@ -144,40 +144,36 @@ function LiveVisual({ visual }: { visual: StoryVisual }) {
           </footer>
         </div>
       );
-    case "live-transcript":
+    case "call-notes":
       return (
-        <div className="story-ui story-transcript-ui" aria-hidden>
+        <div className="story-ui story-notes-ui" aria-hidden>
           <header className="story-ui-bar">
-            <strong>Live transcript</strong>
+            <strong>{visual.title}</strong>
             <span>{visual.timestamp}</span>
           </header>
-          <blockquote>
-            <strong>{visual.speaker}</strong>
-            “{visual.quote}”
-          </blockquote>
-          <footer>
-            {visual.signals.map((signal) => (
-              <span key={signal}>{signal}</span>
+          <ul>
+            {visual.notes.map((note) => (
+              <li key={note}>{note}</li>
             ))}
-          </footer>
+          </ul>
         </div>
       );
-    case "deck-update":
+    case "brief-ready":
       return (
         <div className="story-ui story-deck-ui" aria-hidden>
           <header className="story-ui-bar">
-            <strong>Open deck</strong>
-            <span>Editing now</span>
+            <strong>Open brief</strong>
+            <span>{visual.status}</span>
           </header>
           <div className="story-mini-slide">
             <small>{visual.eyebrow}</small>
             <strong>{visual.headline}</strong>
-            <span>{visual.product}</span>
+            <p>{visual.sections.join(" · ")}</p>
           </div>
-          <footer>✓ {visual.status}</footer>
+          <footer>Ready for seller review</footer>
         </div>
       );
-    case "procurement-email":
+    case "launch-email":
       return (
         <div className="story-ui story-email-ui" aria-hidden>
           <header className="story-ui-bar">
@@ -185,7 +181,7 @@ function LiveVisual({ visual }: { visual: StoryVisual }) {
             <span>5:27 AM</span>
           </header>
           <div className="story-email-body">
-            <span className="story-avatar">JH</span>
+            <span className="story-avatar">NP</span>
             <p>
               <strong>{visual.sender}</strong>
               <small>{visual.subject}</small>
@@ -217,25 +213,20 @@ function LiveVisual({ visual }: { visual: StoryVisual }) {
           </ul>
         </div>
       );
-    case "reply-ready":
+    case "checklist-ready":
       return (
         <div className="story-ui story-reply-ui" aria-hidden>
           <header className="story-ui-bar">
-            <strong>Reply draft</strong>
+            <strong>{visual.title}</strong>
             <span>Not sent</span>
           </header>
           <div className="story-reply-fields">
-            <p>
-              <span>To</span>
-              {visual.to}
-            </p>
-            <p>
-              <span>Re</span>
-              {visual.subject}
-            </p>
-            <i />
-            <i />
-            <i />
+            {visual.items.map((item) => (
+              <p key={item}>
+                <span>✓</span>
+                {item}
+              </p>
+            ))}
           </div>
           <footer>✓ {visual.status}</footer>
         </div>
@@ -256,12 +247,12 @@ function LiveVisual({ visual }: { visual: StoryVisual }) {
           <footer>Public evidence found</footer>
         </div>
       );
-    case "three-why":
+    case "research-brief":
       return (
         <div className="story-ui story-why-ui" aria-hidden>
           <header className="story-ui-bar">
-            <strong>Account hypothesis</strong>
-            <span>Built from evidence</span>
+            <strong>{visual.title}</strong>
+            <span>Sources attached</span>
           </header>
           <ol>
             {visual.items.map((item) => (

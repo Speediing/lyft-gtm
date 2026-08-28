@@ -1,17 +1,12 @@
 export type ClipId =
   | "01-morning-inbox"
   | "02-prospecting-pg"
-  | "03-slides-granola"
-  | "04-engineer-bugbot"
-  | "05-forecast-sfdc"
-  | "06-customer-expert"
-  | "07-customer-exec-brief"
-  | "08-chief-groupchat";
+  | "03-slides-granola";
 
 export type JobId =
-  | "standardize-room"
-  | "legal-redlines"
-  | "attach-engine";
+  | "partner-call"
+  | "launch-questions"
+  | "account-research";
 
 export type ParticipantRole = "you" | "bot";
 
@@ -54,21 +49,20 @@ export type StoryVisual =
       people: { initials: string; name: string }[];
     }
   | {
-      kind: "live-transcript";
+      kind: "call-notes";
       timestamp: string;
-      speaker: string;
-      quote: string;
-      signals: string[];
+      title: string;
+      notes: string[];
     }
   | {
-      kind: "deck-update";
+      kind: "brief-ready";
       eyebrow: string;
       headline: string;
-      product: string;
+      sections: string[];
       status: string;
     }
   | {
-      kind: "procurement-email";
+      kind: "launch-email";
       sender: string;
       subject: string;
       questions: number;
@@ -79,9 +73,9 @@ export type StoryVisual =
       status: string;
     }
   | {
-      kind: "reply-ready";
-      to: string;
-      subject: string;
+      kind: "checklist-ready";
+      title: string;
+      items: string[];
       status: string;
     }
   | {
@@ -91,7 +85,8 @@ export type StoryVisual =
       signal: string;
     }
   | {
-      kind: "three-why";
+      kind: "research-brief";
+      title: string;
       items: { label: string; answer: string }[];
     }
   | {
@@ -121,6 +116,12 @@ export type Artifact =
       title: string;
       eyebrow?: string;
       sections: { heading: string; body: string }[];
+    }
+  | {
+      kind: "checklist";
+      title: string;
+      sourceNote: string;
+      items: { label: string; answer: string; source: string }[];
     }
   | {
       kind: "packet";
@@ -235,7 +236,7 @@ export type Clip = {
   caption: string;
 };
 
-export type CroJob = {
+export type GtmWorkflow = {
   id: JobId;
   number: number;
   title: string;

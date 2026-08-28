@@ -16,9 +16,9 @@ export function QuoteWall() {
 
   return (
     <section id="testimonials" className="quotes">
-      <h2>Testimonials</h2>
+      <h2>Public reactions to Grok Bot</h2>
       <p className="section-lede">
-        Six reactions that capture the persistent-agent difference.
+        Six sourced public posts about persistent agents and their computers.
       </p>
       <div className="quote-thread">
         {featuredQuotes.map((quote) => (

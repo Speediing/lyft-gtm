@@ -51,8 +51,18 @@ export function BotComputer({
               <span
                 key={tab.id}
                 role="tab"
-                aria-selected={tab.host === beat.host}
-                className={tab.host === beat.host ? "is-active" : undefined}
+                aria-selected={
+                  beat.activeTabId
+                    ? tab.id === beat.activeTabId
+                    : tab.host === beat.host
+                }
+                className={
+                  (beat.activeTabId
+                    ? tab.id === beat.activeTabId
+                    : tab.host === beat.host)
+                    ? "is-active"
+                    : undefined
+                }
               >
                 {tab.label}
               </span>

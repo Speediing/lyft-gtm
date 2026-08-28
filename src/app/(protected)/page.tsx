@@ -2,6 +2,7 @@ import { CompareTable } from "@/components/CompareTable";
 import { HeroTelemetry } from "@/components/HeroTelemetry";
 import { JobSection } from "@/components/JobSection";
 import { QuoteWall } from "@/components/QuoteWall";
+import { RosterChart } from "@/components/RosterChart";
 import { SiteNav } from "@/components/SiteNav";
 import { JOBS } from "@/data/jobs";
 
@@ -18,29 +19,36 @@ export default function HomePage() {
         <SiteNav />
       </div>
 
-      <div className="report">
+      <div className="report hero-paper">
         <div className="report-hero">
           <HeroTelemetry />
           <section className="hero">
             <div>
-              <p className="eyebrow">A proactive agent for every Datadog rep</p>
-              <h1>The agents that work while your reps sell.</h1>
+              <p className="eyebrow">Lyft x SpaceXAI</p>
+              <h1>A fleet that keeps GTM work moving.</h1>
               <p className="hero-intro">
-                Grok Bot listens to calls, watches the inbox, and researches
-                accounts in the background. Work triggers it — not another
-                prompt.
+                Grok Bot can follow partner calls, clear launch questions, and
+                research target accounts. Each agent has its own computer. The
+                work starts from the moment, not another prompt.
               </p>
             </div>
           </section>
 
           <section className="usecase-framing">
-            <p className="eyebrow">Three sample use cases</p>
+            <p className="eyebrow">Built for a wider transportation platform</p>
             <h2>
-              Grok Bot gives every seller their own fleet of always-available
-              agent teammates. Anything your sellers do today can be done
-              through Grok Bot.
+              More partners create more calls, questions, research, and
+              follow-up. Give each motion an agent that stays with it.
             </h2>
-            <p>These are three examples from millions — not the boundary.</p>
+            <p className="platform-context">
+              Lyft is bringing rideshare, licensed taxis, bikes and scooters,
+              premium chauffeur, and autonomous vehicles into a broader
+              transportation platform. Freenow is part of that expansion.
+            </p>
+            <p className="illustrative-note">
+              These workflows are illustrative. They do not describe Lyft
+              internal processes.
+            </p>
           </section>
 
           <div className="metric-grid">
@@ -54,10 +62,14 @@ export default function HomePage() {
                   <p>Sample {String(job.number).padStart(2, "0")}</p>
                 </div>
                 <h2>{job.title}</h2>
-                <p className="metric-trigger">Starts when {job.trigger.toLowerCase()}</p>
+                <p className="metric-trigger">
+                  Starts when {job.trigger.toLowerCase()}
+                </p>
               </a>
             ))}
           </div>
+
+          <RosterChart />
         </div>
 
         <div id="jobs">
@@ -79,14 +91,14 @@ export default function HomePage() {
 
       <footer className="site-footer">
         <div>
-          <p className="footer-title">Cursor for Datadog</p>
-          <p>Grok Bot for Datadog sales</p>
+          <p className="footer-title">Lyft x SpaceXAI</p>
+          <p>Illustrative GTM workflows with Grok Bot</p>
         </div>
         <address className="footer-contact">
-          <p>Datadog&apos;s existing Cursor contact</p>
-          <strong>Madeline Ingleby</strong>
-          <a href="mailto:madeline.ingleby@cursor.com">
-            madeline.ingleby@cursor.com
+          <p>Your Cursor contact</p>
+          <strong>Tyler Pickler</strong>
+          <a href="mailto:tyler.pickler@cursor.com">
+            tyler.pickler@cursor.com
           </a>
         </address>
       </footer>
