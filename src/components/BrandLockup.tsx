@@ -16,14 +16,19 @@ export function BrandLockup({
       <span className="brand-times" aria-hidden>
         ×
       </span>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/brand/spacexai.svg"
-        alt="SpaceXAI"
-        className="brand-sxai"
-        width={1294}
-        height={158}
-      />
+      <span className="brand-sxai" aria-label="SpaceXAI">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/brand/spacexai.svg"
+          alt=""
+          aria-hidden
+          width={1294}
+          height={158}
+        />
+        <span className="brand-ai" aria-hidden>
+          AI
+        </span>
+      </span>
     </div>
   );
 }

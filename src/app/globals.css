@@ -326,7 +326,7 @@ button:active:not(:focus-visible),
 }
 
 .brand-lyft,
-.brand-sxai {
+.brand-sxai img {
   display: block;
   width: auto;
   height: auto;
@@ -341,10 +341,24 @@ button:active:not(:focus-visible),
 }
 
 .brand-sxai {
+  display: inline-flex;
+  align-items: baseline;
+  gap: calc(var(--brand-h) * 0.08);
   height: calc(var(--brand-h) * 0.78);
   max-width: calc(var(--brand-h) * 5.2);
   margin-top: 0;
   filter: brightness(0);
+}
+
+.brand-sxai img {
+  height: 100%;
+}
+
+.brand-ai {
+  font-size: calc(var(--brand-h) * 0.64);
+  font-weight: 650;
+  letter-spacing: -0.08em;
+  line-height: 1;
 }
 
 .brand-lockup-sm {
