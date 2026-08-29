@@ -783,7 +783,7 @@ button:active:not(:focus-visible),
   border-radius: 0.85rem;
   background: #f5f5f3;
   box-shadow: 0 0.7rem 1.5rem rgba(0, 0, 0, 0.05);
-  animation: hero-phone-work 7s var(--ease-out) infinite;
+  animation: hero-phone-work 480ms var(--ease-out) both;
 }
 
 .hero-phone-work p {
@@ -854,7 +854,7 @@ button:active:not(:focus-visible),
   border-bottom-right-radius: 0.25rem;
   color: #fff;
   background: #151513;
-  animation: hero-phone-message 7s var(--ease-out) infinite;
+  animation: hero-phone-message 480ms var(--ease-out) 120ms both;
 }
 
 .hero-phone-message.is-bot {
@@ -862,7 +862,7 @@ button:active:not(:focus-visible),
   border-bottom-left-radius: 0.25rem;
   color: #222224;
   background: #f2f2f1;
-  animation: hero-phone-reply 7s var(--ease-out) infinite;
+  animation: hero-phone-reply 480ms var(--ease-out) 260ms both;
 }
 
 .hero-phone-composer,
@@ -942,39 +942,33 @@ button:active:not(:focus-visible),
 }
 
 @keyframes hero-phone-work {
-  0%,
-  8% {
+  from {
     opacity: 0;
     transform: translateY(0.7rem);
   }
-  18%,
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes hero-phone-message {
-  0%,
-  36% {
+  from {
     opacity: 0;
     transform: translateY(0.5rem);
   }
-  47%,
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes hero-phone-reply {
-  0%,
-  57% {
+  from {
     opacity: 0;
     transform: translateY(0.5rem);
   }
-  68%,
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
