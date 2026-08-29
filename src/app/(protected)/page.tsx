@@ -1,4 +1,5 @@
 import { CompareTable } from "@/components/CompareTable";
+import { HeroDemo } from "@/components/HeroDemo";
 import { HeroTelemetry } from "@/components/HeroTelemetry";
 import { JobSection } from "@/components/JobSection";
 import { QuoteWall } from "@/components/QuoteWall";
@@ -23,15 +24,7 @@ export default function HomePage() {
         <div className="report-hero">
           <HeroTelemetry />
           <section className="hero">
-            <div>
-              <p className="eyebrow">Lyft x SpaceXAI</p>
-              <h1>A fleet that keeps GTM work moving.</h1>
-              <p className="hero-intro">
-                Grok Bot can follow partner calls, clear launch questions, and
-                research target accounts. Each agent has its own computer. The
-                work starts from the moment, not another prompt.
-              </p>
-            </div>
+            <HeroDemo />
           </section>
 
           <section className="usecase-framing">
